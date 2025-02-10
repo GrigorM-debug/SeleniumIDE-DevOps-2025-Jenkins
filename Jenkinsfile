@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+        skipDefaultCheckout()
+    }
+
     stages {
         stage('Restore Dependencies') {
             steps {
@@ -22,17 +26,16 @@ pipeline {
             steps {
                 bat '''
                     echo Running tests
-                    dotnet test 
+                    dotnet test --logger trx;LogFileName=TestResults.trx
                 '''
             }
         }
     }
 
-    //Fuck this. I starting to hate Jenkins 
-    // post {
-    //     always {
-    //         archiveArtifacts artifacts: '**/TestResults/*.trx, **/TestResults/*.xml', allowEmptyArchive: true
-    //         junit '**/TestResults/*.xml'
-    //     }
-    // }
+    post {
+        always {
+            archiveArtifacts '**/TestResults/*.trx'
+            publishChecks name: 'Jenkins Build'  // Sends details to GitHub Checks
+        }
+    }
 }
