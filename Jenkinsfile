@@ -28,7 +28,7 @@ pipeline {
         }
     }
 
-    //Fuck this. 
+    //Fuck this. I starting to hate Jenkins 
     // post {
     //     always {
     //         archiveArtifacts artifacts: '**/TestResults/*.trx, **/TestResults/*.xml', allowEmptyArchive: true
