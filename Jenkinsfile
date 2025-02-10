@@ -33,10 +33,12 @@ pipeline {
             }
         }
         stage('Build') {
-            docker {
-                image 'mcr.microsoft.com/dotnet/sdk:6.0'
-                args '-u root:root'
-                reuseNode true
+            agent {
+                docker {
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                    args '-u root:root'
+                    reuseNode true
+                }
             }
             steps {
                 bat '''
@@ -46,10 +48,12 @@ pipeline {
             }
         }
         stage('Test') {
-            docker {
-                image 'mcr.microsoft.com/dotnet/sdk:6.0'
-                args '-u root:root'
-                reuseNode true
+            agent {
+                docker {
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                    args '-u root:root'
+                    reuseNode true
+                }
             }
             steps {
                 bat '''
