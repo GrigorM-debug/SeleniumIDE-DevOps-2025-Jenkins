@@ -5,12 +5,12 @@ pipeline {
         stage('Setup .NET Core') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/dotnet/sdk:8.0'
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
                     reuseNode true
                 }
             }
             steps {
-                bat '''
+                sh '''
                     echo Installing .NET Core SDK 6.0
                     choco install dotnet-sdk --version=6.0.100 -y
                 '''
@@ -25,7 +25,7 @@ pipeline {
                 }
             }
             steps {
-                bat '''
+                sh '''
                     echo Restoring NuGet packages
                     dotnet restore
                 '''
@@ -40,7 +40,7 @@ pipeline {
                 }
             }
             steps {
-                bat '''
+                sh '''
                     echo Building the project
                     dotnet build
                 '''
@@ -55,7 +55,7 @@ pipeline {
                 }
             }
             steps {
-                bat '''
+                sh '''
                     echo Running tests
                     dotnet test
                 '''
