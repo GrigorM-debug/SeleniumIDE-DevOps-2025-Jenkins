@@ -28,10 +28,11 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            archiveArtifacts artifacts: '**/TestResults/*.trx, **/TestResults/*.xml', allowEmptyArchive: true
-            junit '**/TestResults/*.xml'
-        }
-    }
+    //Fuck this. 
+    // post {
+    //     always {
+    //         archiveArtifacts artifacts: '**/TestResults/*.trx, **/TestResults/*.xml', allowEmptyArchive: true
+    //         junit '**/TestResults/*.xml'
+    //     }
+    // }
 }
