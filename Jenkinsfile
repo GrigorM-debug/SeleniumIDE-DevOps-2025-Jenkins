@@ -5,7 +5,7 @@ pipeline {
         stage('Setup .NET Core') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                    image 'mcr.microsoft.com/dotnet/sdk:8.0'
                     reuseNode true
                 }
             }
