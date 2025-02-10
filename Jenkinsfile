@@ -3,6 +3,13 @@ pipeline {
 
     stages {
         stage('Setup .NET Core') {
+            agent {
+                docker {
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                    args '-u root:root'
+                    reuseNode true
+                }
+            }
             steps {
                 bat '''
                     echo Installing .NET Core SDK 6.0
@@ -11,6 +18,11 @@ pipeline {
             }
         }
         stage('Restore Dependencies') {
+            docker {
+                image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                args '-u root:root'
+                reuseNode true
+            }
             steps {
                 bat '''
                     echo Restoring NuGet packages
@@ -19,6 +31,11 @@ pipeline {
             }
         }
         stage('Build') {
+            docker {
+                image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                args '-u root:root'
+                reuseNode true
+            }
             steps {
                 bat '''
                     echo Building the project
@@ -27,6 +44,11 @@ pipeline {
             }
         }
         stage('Test') {
+            docker {
+                image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                args '-u root:root'
+                reuseNode true
+            }
             steps {
                 bat '''
                     echo Running tests
