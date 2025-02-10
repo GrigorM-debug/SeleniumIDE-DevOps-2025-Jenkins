@@ -35,7 +35,7 @@ pipeline {
     post {
         always {
             archiveArtifacts '**/TestResults/*.trx'
-            publishChecks name: 'Jenkins Build'  // Sends details to GitHub Checks
+            publishChecks name: 'Jenkins Build'  
         }
     }
 }
