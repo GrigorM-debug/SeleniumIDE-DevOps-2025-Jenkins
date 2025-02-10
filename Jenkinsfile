@@ -34,12 +34,11 @@ pipeline {
                 '''
             }
         }
-
-        post {
-            always {
-                archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
-                junit '**/TestResults/*.trx'
-            }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
+            junit '**/TestResults/*.trx'
         }
     }
 }
