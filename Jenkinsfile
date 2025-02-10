@@ -22,15 +22,16 @@ pipeline {
             steps {
                 bat '''
                     echo Running tests
-                    dotnet test
+                    dotnet test 
                 '''
             }
         }
     }
+
     post {
         always {
-            archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
-            junit '**/TestResults/*.trx'
+            archiveArtifacts artifacts: '**/TestResults/*.trx, **/TestResults/*.xml', allowEmptyArchive: true
+            junit '**/TestResults/*.xml'
         }
     }
 }
