@@ -18,10 +18,12 @@ pipeline {
             }
         }
         stage('Restore Dependencies') {
-            docker {
-                image 'mcr.microsoft.com/dotnet/sdk:6.0'
-                args '-u root:root'
-                reuseNode true
+            agent {
+                docker {
+                    image 'mcr.microsoft.com/dotnet/sdk:6.0'
+                    args '-u root:root'
+                    reuseNode true
+                }
             }
             steps {
                 bat '''
